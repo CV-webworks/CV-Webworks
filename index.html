@@ -11,73 +11,58 @@
 html { scroll-behavior: smooth; }
 
 body {
-margin: 0;
-font-family: 'Inter', sans-serif;
-background: #070707;
-color: white;
-overflow-x: hidden;
+margin:0;
+font-family:'Inter',sans-serif;
+background:#070707;
+color:white;
+overflow-x:hidden;
 }
 
-/* Subtle grid overlay */
-body::before {
-content: "";
-position: fixed;
-inset: 0;
-background-image:
-linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size: 60px 60px;
-z-index: -2;
-}
-
-/* Glow background */
+/* Subtle animated background glow */
 .glow {
-position: fixed;
-width: 600px;
-height: 600px;
-background: radial-gradient(circle, rgba(157,255,0,0.12) 0%, transparent 70%);
-filter: blur(120px);
-z-index: -1;
-animation: float 14s ease-in-out infinite;
+position:fixed;
+width:700px;
+height:700px;
+background:radial-gradient(circle, rgba(157,255,0,0.15) 0%, transparent 70%);
+filter:blur(120px);
+z-index:-1;
+animation:float 18s ease-in-out infinite;
 }
-.glow.one { top: -150px; left: -150px; }
-.glow.two { bottom: -200px; right: -150px; animation-delay: 7s; }
+.glow.one { top:-200px; left:-200px; }
+.glow.two { bottom:-250px; right:-200px; animation-delay:9s; }
 
 @keyframes float {
-0%,100% { transform: translateY(0px); }
-50% { transform: translateY(50px); }
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(60px);}
 }
 
+/* Sticky Nav */
 nav {
-position: fixed;
-top: 0;
-width: 100%;
-padding: 20px 60px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-z-index: 1000;
-transition: 0.3s;
-}
-
-nav.scrolled {
-background: rgba(10,10,10,0.85);
-backdrop-filter: blur(12px);
-border-bottom: 1px solid #1a1a1a;
+position:fixed;
+top:0;
+width:100%;
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+background:rgba(10,10,10,0.85);
+backdrop-filter:blur(12px);
+border-bottom:1px solid #1a1a1a;
 }
 
 nav h2 {
-margin: 0;
-color: #9DFF00;
-font-weight: 900;
+margin:0;
+color:#9DFF00;
+font-weight:900;
 }
 
 nav a {
-color: white;
-text-decoration: none;
-margin-left: 30px;
-font-size: 14px;
-position: relative;
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:14px;
+position:relative;
 }
 
 nav a::after {
@@ -90,33 +75,27 @@ height:2px;
 background:#9DFF00;
 transition:0.3s;
 }
-
 nav a:hover::after { width:100%; }
 
+/* Hero */
 .hero {
-height: 100vh;
+height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 padding:0 40px;
-animation: fadeIn 1.2s ease forwards;
-}
-
-@keyframes fadeIn {
-from { opacity:0; transform: translateY(20px); }
-to { opacity:1; transform: translateY(0); }
 }
 
 .hero h1 {
-font-size: 70px;
-font-weight: 900;
+font-size:72px;
+font-weight:900;
 line-height:1.1;
 margin-bottom:20px;
 }
 
 .hero span {
-background: linear-gradient(90deg,#9DFF00,#c6ff4d);
+background:linear-gradient(90deg,#9DFF00,#c6ff4d);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
@@ -128,46 +107,48 @@ margin:auto;
 opacity:0.85;
 }
 
-.cta-row {
-margin-top:40px;
-display:flex;
-gap:20px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
 .button {
-padding:16px 40px;
-border-radius:10px;
-font-weight:800;
-text-decoration:none;
-transition:0.3s;
-}
-
-.primary {
-background: linear-gradient(90deg,#9DFF00,#b8ff3a);
+display:inline-block;
+margin-top:40px;
+padding:16px 42px;
+background:linear-gradient(90deg,#9DFF00,#b8ff3a);
 color:black;
+text-decoration:none;
+font-weight:800;
+border-radius:10px;
+transition:0.3s;
 box-shadow:0 0 20px rgba(157,255,0,0.4);
 }
 
-.primary:hover {
-transform:translateY(-4px);
-box-shadow:0 0 35px rgba(157,255,0,0.6);
+.button:hover {
+transform:translateY(-5px);
+box-shadow:0 0 40px rgba(157,255,0,0.6);
 }
 
-.secondary {
-border:1px solid #9DFF00;
-color:#9DFF00;
+/* Mockup image */
+.mockup {
+margin-top:60px;
+display:flex;
+justify-content:center;
+animation:fadeUp 1.2s ease forwards;
 }
 
-.secondary:hover {
-background:#9DFF00;
-color:black;
+.mockup img {
+width:900px;
+max-width:95%;
+border-radius:20px;
+box-shadow:0 0 80px rgba(157,255,0,0.15);
+animation:floatMockup 10s ease-in-out infinite;
+}
+
+@keyframes floatMockup {
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(20px);}
 }
 
 section {
 padding:160px 60px;
-max-width:1200px;
+max-width:1000px;
 margin:auto;
 opacity:0;
 transform:translateY(40px);
@@ -182,39 +163,29 @@ transform:translateY(0);
 h2 {
 font-size:48px;
 font-weight:900;
-margin-bottom:20px;
+margin-bottom:30px;
 }
 
-.grid {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:40px;
-margin-top:70px;
-}
-
-.card, .price-card {
+/* Service Box */
+.service-box, .price-box {
 background:linear-gradient(145deg,#0f0f0f,#141414);
-padding:50px;
-border-radius:16px;
+padding:60px;
+border-radius:20px;
 border:1px solid #1c1c1c;
+margin-bottom:60px;
 transition:0.4s;
 }
 
-.card:hover, .price-card:hover {
+.service-box:hover, .price-box:hover {
 transform:translateY(-10px);
 border-color:#9DFF00;
 box-shadow:0 0 40px rgba(157,255,0,0.15);
 }
 
 .price {
-font-size:46px;
+font-size:48px;
 color:#9DFF00;
 margin:20px 0;
-}
-
-.popular {
-border:1px solid #9DFF00;
-box-shadow:0 0 30px rgba(157,255,0,0.2);
 }
 
 footer {
@@ -232,7 +203,7 @@ opacity:0.6;
 <div class="glow one"></div>
 <div class="glow two"></div>
 
-<nav id="navbar">
+<nav>
 <h2>WebWorks</h2>
 <div>
 <a href="#services">Services</a>
@@ -244,54 +215,59 @@ opacity:0.6;
 <div class="hero">
 <div>
 <h1>Designed With You.<br><span>Engineered For Growth.</span></h1>
-<p>An independent studio crafting modern, high-performing websites for businesses that want to look established and convert with confidence.</p>
+<p>An independent studio crafting modern, high-performing websites for businesses that want to look established, trustworthy, and built to convert.</p>
+<a href="#contact" class="button">Start Your Project</a>
 
-<div class="cta-row">
-<a href="#contact" class="button primary">Start Your Project</a>
-<a href="#services" class="button secondary">Explore Services</a>
+<div class="mockup">
+<img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=1600&auto=format&fit=crop" alt="Website Design Example">
 </div>
+
 </div>
 </div>
 
 <section id="services">
 <h2>Built With Precision.</h2>
-<p>Every layout, section and interaction is intentional. Clear structure builds trust. Modern design builds authority. Strategic positioning drives results.</p>
 
-<div class="grid">
-<div class="card">
+<div class="service-box">
 <h3>Custom Website Design</h3>
-<p>Professionally structured websites tailored to your brand and audience.</p>
+<p>
+Your website is often the first impression your business makes. 
+We design structured, modern layouts that position your brand with authority from the first second. 
+Every section is carefully crafted to guide attention, build trust, and encourage action — without overwhelming your audience.
+</p>
 </div>
 
-<div class="card">
-<h3>Ongoing Maintenance</h3>
-<p>Performance optimisation, updates and improvements as your business evolves.</p>
+<div class="service-box">
+<h3>Ongoing Maintenance & Optimisation</h3>
+<p>
+A high-performing website isn’t static. 
+We ensure your site remains fast, secure, and visually refined as your business evolves. 
+From performance improvements to subtle design refinements, your online presence stays sharp and competitive.
+</p>
 </div>
-</div>
+
 </section>
 
 <section id="pricing">
 <h2>Investment</h2>
 
-<div class="grid">
-
-<div class="price-card popular">
-<h3>Premium</h3>
-<div class="price">£450–£650</div>
-<p>Multi-page structured website<br>Advanced layout depth<br>Priority build schedule<br>Custom feature integration</p>
-</div>
-
-<div class="price-card">
+<div class="price-box">
 <h3>Basic</h3>
 <div class="price">£200</div>
-<p>Professional one-page website<br>Responsive design<br>Clean modern layout</p>
-</div>
-
-</div>
-
-<p style="margin-top:50px; opacity:0.6;">
-Independent studio. Select client capacity to ensure quality and collaboration.
+<p>
+A professionally structured one-page website designed to establish credibility and present your business clearly. 
+Perfect for new or local businesses looking to create a strong digital foundation.
 </p>
+</div>
+
+<div class="price-box">
+<h3>Premium</h3>
+<div class="price">£450–£650</div>
+<p>
+A multi-page, strategically structured website with deeper layout refinement and advanced features. 
+Ideal for businesses ready to position themselves at a higher level and scale confidently.
+</p>
+</div>
 
 </section>
 
@@ -305,15 +281,15 @@ Independent studio. Select client capacity to ensure quality and collaboration.
 </footer>
 
 <script>
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll", () => {
-sections.forEach(sec => {
-if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+const sections=document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
 sec.classList.add("visible");
 }
 });
-if(window.scrollY > 50){
-document.getElementById("navbar").classList.add("scrolled");
-}
 });
 </script>
+
+</body>
+</html>
