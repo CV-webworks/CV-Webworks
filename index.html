@@ -3,289 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WebWorks | Professional Website Design</title>
+<title>WebWorks</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{
+font-family:'Inter',sans-serif;
+background:#070707;
+color:white;
+overflow-x:hidden;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: #fff;
-  overflow-x: hidden;
+/* GRID BACKGROUND */
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(157,255,0,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(157,255,0,0.05) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-3;
 }
 
-/* BACKGROUND PATTERN */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    linear-gradient(rgba(157,255,0,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(157,255,0,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: -2;
+/* MOVING GLOW */
+body::after{
+content:"";
+position:fixed;
+width:600px;
+height:600px;
+background:radial-gradient(circle, rgba(157,255,0,0.18), transparent 70%);
+top:-200px;
+left:-200px;
+animation:floatGlow 14s infinite alternate ease-in-out;
+z-index:-2;
+}
+@keyframes floatGlow{
+0%{transform:translate(0,0)}
+100%{transform:translate(250px,200px)}
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: -200px;
-  left: -200px;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(157,255,0,0.15), transparent 70%);
-  z-index: -1;
-  animation: floatGlow 12s infinite alternate ease-in-out;
+/* NAV */
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:22px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(14px);
+border-bottom:1px solid rgba(157,255,0,0.2);
+z-index:1000;
 }
-
-@keyframes floatGlow {
-  0% { transform: translate(0,0); }
-  100% { transform: translate(150px, 150px); }
+.logo{
+color:#9DFF00;
+font-weight:800;
+font-size:22px;
 }
-
-/* NAVIGATION */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(10,10,10,0.9);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(157,255,0,0.2);
-  z-index: 1000;
+.nav-links{
+display:flex;
+gap:35px;
 }
-
-.logo {
-  font-weight: 800;
-  font-size: 24px;
-  color: #9DFF00;
-  letter-spacing: 1px;
+nav a{
+color:white;
+text-decoration:none;
+position:relative;
 }
-
-.nav-links {
-  display: flex;
-  gap: 35px;
+nav a::after{
+content:"";
+position:absolute;
+bottom:-6px;
+left:0;
+width:0%;
+height:2px;
+background:#9DFF00;
+transition:0.3s;
 }
-
-nav a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  position: relative;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: #9DFF00;
-  transition: 0.3s;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
+nav a:hover::after{width:100%}
 
 /* SECTION */
-section {
-  padding: 110px 8%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+section{
+padding:120px 8%;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+position:relative;
+}
+.section-title{
+font-size:40px;
+margin-bottom:30px;
 }
 
-.section-title {
-  font-size: 40px;
-  margin-bottom: 25px;
-}
-
-p {
-  color: #cfcfcf;
-  max-width: 750px;
-  margin-top: 15px;
+/* NEON SPLITTER */
+.splitter{
+height:2px;
+width:100%;
+background:linear-gradient(to right, transparent, #9DFF00, transparent);
+box-shadow:0 0 25px rgba(157,255,0,0.6);
 }
 
 /* HERO */
-.hero {
-  min-height: 100vh;
-  justify-content: center;
-  padding-top: 170px;
+.hero{
+min-height:100vh;
+justify-content:center;
+padding-top:180px;
+}
+.hero h1{
+font-size:60px;
+max-width:900px;
+font-weight:800;
+}
+.hero span{color:#9DFF00}
+.hero p{
+margin-top:20px;
+color:#ccc;
+max-width:700px;
+}
+.hero button{
+margin-top:35px;
+padding:16px 42px;
+background:#9DFF00;
+border:none;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+transition:0.3s;
+}
+.hero button:hover{
+transform:scale(1.07);
+box-shadow:0 0 40px rgba(157,255,0,0.6);
 }
 
-.hero h1 {
-  font-size: 58px;
-  font-weight: 800;
-  max-width: 850px;
+/* HERO IMAGE */
+.hero-image{
+margin-top:55px;
+max-width:580px;
+width:100%;
+transition:0.5s;
 }
-
-.hero span {
-  color: #9DFF00;
+.hero-image img{
+width:100%;
+border-radius:14px;
+box-shadow:0 0 60px rgba(157,255,0,0.25);
+transition:0.5s;
 }
-
-.hero button {
-  margin-top: 30px;
-  padding: 16px 42px;
-  background: #9DFF00;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 40px rgba(157,255,0,0.6);
-}
-
-.hero-image {
-  margin-top: 55px;
-  max-width: 650px;
-  width: 100%;
-}
-
-.hero-image img {
-  width: 100%;
-  border-radius: 14px;
-  object-fit: cover;
-  box-shadow: 0 0 60px rgba(157,255,0,0.2);
-  transition: 0.3s;
-}
-
-.hero-image img:hover {
-  transform: scale(1.02);
+.hero-image img:hover{
+transform:scale(1.03);
 }
 
 /* CARDS */
-.card {
-  background: linear-gradient(145deg, #111111, #0f0f0f);
-  padding: 42px;
-  border-radius: 14px;
-  margin-top: 50px;
-  max-width: 720px;
-  width: 100%;
-  border: 1px solid rgba(157,255,0,0.15);
-  transition: 0.4s;
-  opacity: 0;
-  transform: translateY(40px);
+.card{
+background:#0f0f0f;
+padding:45px;
+border-radius:16px;
+margin-top:50px;
+max-width:720px;
+width:100%;
+border:1px solid rgba(157,255,0,0.15);
+transition:0.4s;
+opacity:0;
+transform:translateY(40px);
 }
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 40px rgba(157,255,0,0.3);
-}
-
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 14px 30px;
-  background: #9DFF00;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 40px rgba(157,255,0,0.6);
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 40px rgba(157,255,0,0.3);
 }
 
 /* TIMELINE */
-.timeline {
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  margin-top: 30px;
+.timeline{
+position:relative;
+max-width:720px;
+width:100%;
+margin-top:30px;
+}
+.timeline-line{
+position:absolute;
+left:30px;
+top:0;
+width:3px;
+height:100%;
+background:linear-gradient(to bottom,#9DFF00,transparent);
+animation:pulseLine 3s infinite alternate;
+}
+@keyframes pulseLine{
+0%{opacity:0.5}
+100%{opacity:1}
+}
+.timeline-item{
+position:relative;
+padding-left:80px;
+margin-bottom:70px;
+opacity:0;
+transform:translateY(40px);
+transition:0.8s ease;
+}
+.timeline-item::before{
+content:"";
+position:absolute;
+left:23px;
+top:5px;
+width:16px;
+height:16px;
+background:#9DFF00;
+border-radius:50%;
+box-shadow:0 0 20px rgba(157,255,0,0.7);
+}
+.timeline-item::after{
+content:"↓";
+position:absolute;
+left:20px;
+bottom:-35px;
+color:#9DFF00;
+font-size:22px;
+animation:bounce 2s infinite;
+}
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(6px)}
 }
 
-.timeline-line {
-  position: absolute;
-  left: 25px;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: #9DFF00;
-  opacity: 0.4;
+/* BUTTON */
+.btn{
+margin-top:20px;
+padding:14px 30px;
+background:#9DFF00;
+border:none;
+border-radius:8px;
+cursor:pointer;
+transition:0.3s;
 }
-
-.timeline-item {
-  position: relative;
-  margin-bottom: 60px;
-  padding-left: 60px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s ease;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: 18px;
-  top: 4px;
-  width: 14px;
-  height: 14px;
-  background: #9DFF00;
-  border-radius: 50%;
-}
-
-.timeline-content h3 {
-  margin-bottom: 10px;
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 35px rgba(157,255,0,0.6);
 }
 
 /* FORM */
-form {
-  max-width: 720px;
-  width: 100%;
+form{
+max-width:720px;
+width:100%;
+}
+form input,form textarea{
+width:100%;
+padding:16px;
+margin-top:15px;
+background:#111;
+border:1px solid rgba(157,255,0,0.2);
+border-radius:8px;
+color:white;
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 16px;
-  margin-top: 15px;
-  background: #111;
-  border: 1px solid rgba(157,255,0,0.2);
-  border-radius: 8px;
-  color: white;
-}
-
-footer {
-  text-align: center;
-  padding: 50px 8%;
-  border-top: 1px solid rgba(157,255,0,0.2);
-  color: #888;
-}
-
-/* SHOW CLASS */
-.show {
-  opacity: 1;
-  transform: translateY(0);
-  transition: 1s ease;
+/* SHOW ANIMATION */
+.show{
+opacity:1;
+transform:translateY(0);
+transition:1s ease;
 }
 
 /* MOBILE */
-@media (max-width:768px) {
-  .hero h1 { font-size:36px; }
-  .logo { font-size:20px; }
+@media(max-width:768px){
+.hero h1{font-size:36px}
 }
 </style>
 </head>
@@ -293,91 +277,110 @@ footer {
 <body>
 
 <nav>
-  <div class="logo">WebWorks</div>
-  <div class="nav-links">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#process">Process</a>
-    <a href="#contact">Contact</a>
-  </div>
+<div class="logo">WebWorks</div>
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#pricing">Pricing</a>
+<a href="#process">Process</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
 <section class="hero" id="home">
-  <h1>We build <span>with you</span>, not just for you.</h1>
-  <p>We work closely with you to design a modern website that reflects your business — professional, credible and positioned for growth.</p>
-  <button onclick="document.getElementById('contact').scrollIntoView()">Start Your Project</button>
+<h1>Designed by us. <span>Engineered for you.</span></h1>
+<p>We design modern, professional websites that elevate your business and position you properly in today’s digital space.</p>
+<button onclick="document.getElementById('contact').scrollIntoView()">Start Your Project</button>
 
-  <div class="hero-image">
-    <img src="https://images.unsplash.com/photo-9WnjxT1NCoY?auto=format&fit=crop&w=1400&q=80" alt="Website mockup">
-  </div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-9WnjxT1NCoY?auto=format&fit=crop&w=1400&q=80">
+</div>
 </section>
+
+<div class="splitter"></div>
 
 <section id="services">
-  <h2 class="section-title">Our Services</h2>
-  <div class="card"><h3>Website Design</h3>
-<p>Custom-built websites tailored to your brand. Clean structure, modern visuals and mobile optimisation that build credibility instantly and present your business properly.</p></div>
-
-  <div class="card"><h3>Ongoing Maintenance</h3>
-<p>Continuous updates, security monitoring and performance optimisation — ensuring your digital presence stays strong long after launch.</p></div>
+<h2 class="section-title">Our Services</h2>
+<div class="card">
+<h3>Website Design</h3>
+<p>Custom, responsive and strategically structured websites built around your business goals.</p>
+</div>
+<div class="card">
+<h3>Ongoing Maintenance</h3>
+<p>Performance monitoring, updates and continued optimisation to keep your site operating at its best.</p>
+</div>
 </section>
+
+<div class="splitter"></div>
 
 <section id="pricing">
-  <h2 class="section-title">Pricing — Designed Around Your Stage</h2>
-  <div class="card"><h3>Basic — £200</h3>
-<p>A strong professional online presence with essential pages, mobile optimisation and intuitive design — ideal for businesses ready to establish credibility online.</p>
-<button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Basic</button></div>
-
-  <div class="card"><h3>Premium — £450–£650</h3>
-<p>Advanced design and structure, with deeper branding presence and optional ongoing support — built for businesses aiming to scale confidently.</p>
-<button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Premium</button></div>
+<h2 class="section-title">Pricing</h2>
+<div class="card">
+<h3>Basic — £200</h3>
+<p>A professional, clean website designed to establish strong credibility online.</p>
+<button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Basic</button>
+</div>
+<div class="card">
+<h3>Premium — £450–£650</h3>
+<p>Advanced structure and premium design with deeper branding integration.</p>
+<button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Premium</button>
+</div>
 </section>
+
+<div class="splitter"></div>
 
 <section id="process">
-  <h2 class="section-title">Our Process</h2>
-  <div class="timeline">
-    <div class="timeline-line"></div>
+<h2 class="section-title">Our Process</h2>
+<div class="timeline">
+<div class="timeline-line"></div>
 
-    <div class="timeline-item"><div class="timeline-content"><h3>1. Discovery</h3><p>Understanding your business and expectations in detail.</p></div></div>
+<div class="timeline-item">
+<h3>1. Discovery</h3>
+<p>Understanding your goals and direction.</p>
+</div>
 
-    <div class="timeline-item"><div class="timeline-content"><h3>2. Structure</h3><p>Mapping out a logical, intuitive layout before design begins.</p></div></div>
+<div class="timeline-item">
+<h3>2. Structure</h3>
+<p>Mapping the layout and user journey.</p>
+</div>
 
-    <div class="timeline-item"><div class="timeline-content"><h3>3. Design & Build</h3><p>Crafting a beautiful, responsive website together — with you involved every step.</p></div></div>
+<div class="timeline-item">
+<h3>3. Design & Build</h3>
+<p>Crafting and refining your website.</p>
+</div>
 
-    <div class="timeline-item"><div class="timeline-content"><h3>4. Launch & Support</h3><p>Going live smoothly with optional ongoing maintenance.</p></div></div>
+<div class="timeline-item">
+<h3>4. Launch</h3>
+<p>Going live confidently.</p>
+</div>
 
-  </div>
+</div>
 </section>
+
+<div class="splitter"></div>
 
 <section id="contact">
-  <h2 class="section-title">Start Your Project</h2>
-  <p>Based in North London, United Kingdom. Working with businesses locally and remotely.</p>
+<h2 class="section-title">Start Your Project</h2>
+<p>Based in North London. Working locally and remotely.</p>
 
-  <form action="https://formspree.io/f/yourID" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Tell us about your project" required></textarea>
-    <button type="submit" class="btn">Send Message</button>
-  </form>
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="5" placeholder="Tell me about your project"></textarea>
+<button type="submit" class="btn">Send Message</button>
+</form>
 
-  <p style="margin-top:25px;">Drop me an email and I’ll reply as soon as possible. Thanks for choosing WebWorks.</p>
-  <p style="margin-top:15px;">+44 7305077815 | charlvandermerwe360@gmail.com</p>
+<p style="margin-top:25px;">Drop me an email and I’ll reply as soon as possible. Thanks for choosing WebWorks.</p>
 </section>
 
-<footer>
-WebWorks — Professional Website Design Studio
-</footer>
-
 <script>
-const items = document.querySelectorAll('.card, .timeline-item');
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
+const items=document.querySelectorAll('.card,.timeline-item');
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add('show')}
 });
-}, {threshold:0.2});
-items.forEach(el => observer.observe(el));
+},{threshold:0.2});
+items.forEach(el=>observer.observe(el));
 </script>
 
 </body>
