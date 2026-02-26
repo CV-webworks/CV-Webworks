@@ -17,7 +17,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* SCROLL PROGRESS BAR */
+/* Progress Bar */
 .progress-bar{
 position:fixed;
 top:0;
@@ -29,7 +29,7 @@ z-index:2000;
 box-shadow:0 0 15px #9DFF00;
 }
 
-/* GRID BACKGROUND */
+/* Grid Background */
 body::before{
 content:"";
 position:fixed;
@@ -42,12 +42,12 @@ background-size:40px 40px;
 z-index:-2;
 }
 
-/* NAV */
+/* Navigation */
 nav{
 position:fixed;
 top:0;
 width:100%;
-padding:22px 8%;
+padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -56,14 +56,21 @@ backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(157,255,0,0.2);
 z-index:1000;
 }
-.logo{color:#9DFF00;font-weight:800}
-.nav-links{display:flex;gap:35px}
+.logo{
+color:#9DFF00;
+font-weight:800;
+font-size:20px;
+}
+.nav-links{
+display:flex;
+gap:35px;
+}
 nav a{
 color:white;
 text-decoration:none;
 position:relative;
+font-weight:500;
 }
-nav a.active::after,
 nav a:hover::after{
 content:"";
 position:absolute;
@@ -74,7 +81,7 @@ height:2px;
 background:#9DFF00;
 }
 
-/* SECTIONS */
+/* Sections */
 section{
 padding:130px 8%;
 text-align:center;
@@ -82,9 +89,12 @@ display:flex;
 flex-direction:column;
 align-items:center;
 }
-.section-title{font-size:42px;margin-bottom:30px}
+.section-title{
+font-size:42px;
+margin-bottom:30px;
+}
 
-/* SPLITTER */
+/* Splitter */
 .splitter{
 height:2px;
 width:100%;
@@ -92,11 +102,23 @@ background:linear-gradient(90deg,transparent,#9DFF00,transparent);
 box-shadow:0 0 20px #9DFF00;
 }
 
-/* HERO */
-.hero{min-height:100vh;justify-content:center;padding-top:180px}
-.hero h1{font-size:60px;max-width:900px;font-weight:800}
+/* Hero */
+.hero{
+min-height:100vh;
+justify-content:center;
+padding-top:140px;
+}
+.hero h1{
+font-size:60px;
+max-width:900px;
+font-weight:800;
+}
 .hero span{color:#9DFF00}
-.hero p{margin-top:20px;color:#ccc;max-width:700px}
+.hero p{
+margin-top:20px;
+color:#ccc;
+max-width:700px;
+}
 .hero button{
 margin-top:35px;
 padding:16px 40px;
@@ -112,12 +134,11 @@ transform:scale(1.07);
 box-shadow:0 0 35px #9DFF00;
 }
 
-/* HERO IMAGE */
+/* Hero Image */
 .hero-image{
 margin-top:60px;
-max-width:520px;
+max-width:500px;
 width:100%;
-transition:0.5s;
 }
 .hero-image img{
 width:100%;
@@ -125,7 +146,7 @@ border-radius:14px;
 box-shadow:0 0 60px rgba(157,255,0,0.3);
 }
 
-/* CARDS */
+/* Cards */
 .card{
 background:#101010;
 padding:45px;
@@ -134,17 +155,38 @@ margin-top:50px;
 max-width:720px;
 width:100%;
 border:1px solid rgba(157,255,0,0.15);
-opacity:0;
-transform:translateY(40px);
-transition:0.6s ease;
+transition:0.4s ease;
 }
 .card:hover{
 transform:translateY(-8px);
 box-shadow:0 0 35px rgba(157,255,0,0.4);
 }
-.show{opacity:1;transform:translateY(0)}
+.card h3{
+margin-bottom:15px;
+font-size:22px;
+}
+.card p{
+color:#bbb;
+line-height:1.6;
+}
 
-/* TIMELINE */
+/* CTA Button */
+.cta-btn{
+margin-top:25px;
+padding:14px 35px;
+background:#9DFF00;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+.cta-btn:hover{
+transform:scale(1.07);
+box-shadow:0 0 35px #9DFF00;
+}
+
+/* Timeline */
 .timeline{
 position:relative;
 max-width:720px;
@@ -156,21 +198,19 @@ position:absolute;
 left:25px;
 top:0;
 width:3px;
-height:0%;
+height:100%;
 background:#9DFF00;
-transition:height 1s ease;
 }
 .timeline-item{
+position:relative;
 padding-left:70px;
 margin-bottom:70px;
-opacity:0;
-transform:translateY(40px);
-transition:0.8s ease;
 }
 .timeline-item::before{
 content:"";
 position:absolute;
 left:18px;
+top:5px;
 width:16px;
 height:16px;
 background:#9DFF00;
@@ -178,15 +218,21 @@ border-radius:50%;
 box-shadow:0 0 20px #9DFF00;
 }
 
-/* FOOTER */
-footer{
-padding:40px 8%;
-text-align:center;
-border-top:1px solid rgba(157,255,0,0.2);
-color:#888;
+/* Contact Box */
+.contact-box{
+margin-top:30px;
+padding:30px;
+background:#101010;
+border-radius:12px;
+border:1px solid rgba(157,255,0,0.2);
+box-shadow:0 0 25px rgba(157,255,0,0.15);
+}
+.contact-box p{
+margin:10px 0;
+color:#ccc;
 }
 
-/* MOBILE */
+/* Mobile */
 @media(max-width:768px){
 .hero h1{font-size:36px}
 }
@@ -214,7 +260,7 @@ color:#888;
 <button onclick="document.getElementById('contact').scrollIntoView()">Start Your Project</button>
 
 <div class="hero-image">
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80" alt="Website workspace">
 </div>
 </section>
 
@@ -222,31 +268,63 @@ color:#888;
 
 <section id="services">
 <h2 class="section-title">Our Services</h2>
-<div class="card"><h3>Website Design</h3><p>Custom structured websites built for credibility and clarity.</p></div>
-<div class="card"><h3>Maintenance</h3><p>Ongoing updates and performance optimisation.</p></div>
+
+<div class="card">
+<h3>Website Design</h3>
+<p>Custom structured websites built for credibility, clarity, and strong first impressions. Designed around your vision and business goals.</p>
+</div>
+
+<div class="card">
+<h3>Ongoing Maintenance</h3>
+<p>Performance optimisation, updates, and long-term support to ensure your website continues working for your business.</p>
+</div>
 </section>
 
 <div class="splitter"></div>
 
 <section id="pricing">
 <h2 class="section-title">Pricing</h2>
-<div class="card"><h3>Basic — £200</h3><p>Professional foundation website.</p>
-<button class="hero button" onclick="document.getElementById('contact').scrollIntoView()">Choose Basic</button></div>
-<div class="card"><h3>Premium — £450–£650</h3><p>Advanced design & deeper branding presence.</p>
-<button class="hero button" onclick="document.getElementById('contact').scrollIntoView()">Choose Premium</button></div>
+
+<div class="card">
+<h3>Basic — £200</h3>
+<p>A professional foundation website built to establish trust and credibility online.</p>
+<button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Basic</button>
+</div>
+
+<div class="card">
+<h3>Premium — £450–£650</h3>
+<p>Advanced design, stronger brand positioning, and enhanced structure for businesses ready to level up.</p>
+<button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView()">Choose Premium</button>
+</div>
 </section>
 
 <div class="splitter"></div>
 
 <section id="process">
 <h2 class="section-title">Our Process</h2>
-<div class="timeline">
-<div class="timeline-line" id="timelineLine"></div>
 
-<div class="timeline-item"><h3>1. Discovery</h3><p>Understanding your direction.</p></div>
-<div class="timeline-item"><h3>2. Structure</h3><p>Mapping the experience.</p></div>
-<div class="timeline-item"><h3>3. Design & Build</h3><p>Crafting and refining.</p></div>
-<div class="timeline-item"><h3>4. Launch</h3><p>Going live confidently.</p></div>
+<div class="timeline">
+<div class="timeline-line"></div>
+
+<div class="timeline-item">
+<h3>1. Discovery</h3>
+<p>We understand your goals, ideas, and the direction you want your brand to move in.</p>
+</div>
+
+<div class="timeline-item">
+<h3>2. Structure</h3>
+<p>We map out the user journey to ensure clarity, credibility, and smooth flow.</p>
+</div>
+
+<div class="timeline-item">
+<h3>3. Design & Build</h3>
+<p>Your website is crafted carefully, refined with you, and aligned with your expectations.</p>
+</div>
+
+<div class="timeline-item">
+<h3>4. Launch</h3>
+<p>Your website goes live confidently, ready to represent your business properly.</p>
+</div>
 
 </div>
 </section>
@@ -255,40 +333,24 @@ color:#888;
 
 <section id="contact">
 <h2 class="section-title">Start Your Project</h2>
-<p>Based in North London. Working locally and remotely.</p>
+<p style="max-width:600px;margin-bottom:40px;">
+Based in North London. Working locally and remotely.
+Drop me an email and I’ll reply as soon as possible.
+Thanks for choosing WebWorks.
+</p>
+
+<div class="contact-box">
+<p><strong>Phone:</strong> +44 7305077815</p>
+<p><strong>Email:</strong> charlvandermerwe360@gmail.com</p>
+</div>
 </section>
 
-<footer>
-+44 7305077815<br>
-charlvandermerwe360@gmail.com
-</footer>
-
 <script>
-/* Scroll Progress */
 window.addEventListener("scroll",()=>{
 let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 let scrolled=(winScroll/height)*100;
 document.getElementById("progressBar").style.width=scrolled+"%";
-});
-
-/* Reveal */
-const items=document.querySelectorAll('.card,.timeline-item');
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add('show')}
-});
-},{threshold:0.2});
-items.forEach(el=>observer.observe(el));
-
-/* Timeline Line Fill */
-const timeline=document.getElementById("process");
-const line=document.getElementById("timelineLine");
-window.addEventListener("scroll",()=>{
-const rect=timeline.getBoundingClientRect();
-if(rect.top<window.innerHeight && rect.bottom>0){
-line.style.height="100%";
-}
 });
 </script>
 
