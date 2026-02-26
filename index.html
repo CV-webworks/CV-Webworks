@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WebWorks</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 html { scroll-behavior: smooth; }
@@ -13,27 +13,48 @@ html { scroll-behavior: smooth; }
 body {
 margin: 0;
 font-family: 'Inter', sans-serif;
-background: #0a0a0a;
+background: #070707;
 color: white;
+overflow-x: hidden;
+}
+
+/* Animated glow background */
+.glow {
+position: fixed;
+width: 600px;
+height: 600px;
+background: radial-gradient(circle, rgba(157,255,0,0.15) 0%, transparent 70%);
+filter: blur(120px);
+z-index: -1;
+animation: float 12s ease-in-out infinite;
+}
+
+.glow.one { top: -100px; left: -100px; }
+.glow.two { bottom: -150px; right: -100px; animation-delay: 6s; }
+
+@keyframes float {
+0%,100% { transform: translateY(0px); }
+50% { transform: translateY(40px); }
 }
 
 nav {
 position: fixed;
 top: 0;
 width: 100%;
-background: rgba(10,10,10,0.85);
-backdrop-filter: blur(10px);
+background: rgba(10,10,10,0.75);
+backdrop-filter: blur(12px);
 padding: 20px 60px;
 display: flex;
 justify-content: space-between;
 align-items: center;
 z-index: 1000;
+border-bottom: 1px solid #111;
 }
 
 nav h2 {
 margin: 0;
 color: #9DFF00;
-font-weight: 800;
+font-weight: 900;
 letter-spacing: 1px;
 }
 
@@ -42,37 +63,59 @@ color: white;
 text-decoration: none;
 margin-left: 30px;
 font-size: 14px;
-font-weight: 500;
+position: relative;
 }
 
-nav a:hover { color: #9DFF00; }
+nav a::after {
+content: '';
+position: absolute;
+width: 0%;
+height: 2px;
+bottom: -5px;
+left: 0;
+background: #9DFF00;
+transition: 0.3s;
+}
+
+nav a:hover::after { width: 100%; }
 
 section {
-padding: 140px 60px;
+padding: 160px 60px;
 max-width: 1200px;
 margin: auto;
-position: relative;
+opacity: 0;
+transform: translateY(40px);
+transition: 0.8s ease;
+}
+
+section.visible {
+opacity: 1;
+transform: translateY(0);
 }
 
 .hero {
 height: 100vh;
 display: flex;
-justify-content: center;
 align-items: center;
+justify-content: center;
 text-align: center;
-background: radial-gradient(circle at top, #111 0%, #0a0a0a 60%);
 }
 
 .hero h1 {
-font-size: 64px;
-font-weight: 800;
+font-size: 72px;
+font-weight: 900;
 margin-bottom: 20px;
+line-height: 1.1;
 }
 
-.hero span { color: #9DFF00; }
+.hero span {
+background: linear-gradient(90deg,#9DFF00,#c6ff4d);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 
 .hero p {
-font-size: 20px;
+font-size: 22px;
 max-width: 750px;
 margin: auto;
 opacity: 0.85;
@@ -81,97 +124,105 @@ opacity: 0.85;
 .button {
 display: inline-block;
 margin-top: 40px;
-padding: 16px 38px;
-background: linear-gradient(90deg, #9DFF00, #b8ff3a);
+padding: 18px 44px;
+background: linear-gradient(90deg,#9DFF00,#b8ff3a);
 color: black;
 text-decoration: none;
-font-weight: 700;
-border-radius: 8px;
-transition: 0.3s ease;
+font-weight: 800;
+border-radius: 10px;
+transition: 0.3s;
 }
 
 .button:hover {
-transform: translateY(-3px);
-box-shadow: 0 0 20px rgba(157,255,0,0.4);
-}
-
-.card, .price-card, .process-step {
-background: linear-gradient(145deg, #111, #151515);
-padding: 50px;
-border-radius: 12px;
-border: 1px solid #1f1f1f;
-box-shadow: 0 0 40px rgba(157,255,0,0.05);
-transition: 0.3s ease;
-}
-
-.card:hover, .price-card:hover, .process-step:hover {
-transform: translateY(-6px);
-border-color: #9DFF00;
+transform: translateY(-4px);
+box-shadow: 0 0 30px rgba(157,255,0,0.5);
 }
 
 .grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 40px;
-margin-top: 60px;
+margin-top: 70px;
+}
+
+.card, .price-card {
+background: linear-gradient(145deg,#0f0f0f,#141414);
+padding: 50px;
+border-radius: 14px;
+border: 1px solid #1c1c1c;
+transition: 0.4s;
+}
+
+.card:hover, .price-card:hover {
+transform: translateY(-10px);
+border-color: #9DFF00;
+box-shadow: 0 0 40px rgba(157,255,0,0.15);
 }
 
 h2 {
-font-size: 40px;
-font-weight: 800;
-margin-bottom: 20px;
-}
-
-.subtext {
-opacity: 0.75;
-max-width: 700px;
+font-size: 48px;
+font-weight: 900;
 }
 
 .price {
-font-size: 42px;
-margin: 20px 0;
+font-size: 46px;
 color: #9DFF00;
+margin: 20px 0;
 }
 
-.process-step h3 { color: #9DFF00; }
+.stats {
+display: flex;
+justify-content: space-between;
+margin-top: 80px;
+text-align: center;
+}
+
+.stat h3 {
+font-size: 42px;
+color: #9DFF00;
+margin: 0;
+}
 
 input, textarea {
 width: 100%;
-padding: 14px;
+padding: 16px;
 margin-top: 12px;
 background: #111;
 border: 1px solid #222;
 color: white;
-border-radius: 6px;
+border-radius: 8px;
 }
 
 form button {
 margin-top: 20px;
-padding: 14px 32px;
+padding: 16px 36px;
 background: #9DFF00;
 border: none;
-font-weight: 700;
+font-weight: 800;
+border-radius: 8px;
 cursor: pointer;
-border-radius: 6px;
 }
 
 footer {
 background: #000;
 text-align: center;
-padding: 60px;
-margin-top: 100px;
-opacity: 0.7;
+padding: 80px;
+margin-top: 120px;
+opacity: 0.6;
 }
 </style>
 </head>
 
 <body>
 
+<div class="glow one"></div>
+<div class="glow two"></div>
+
 <nav>
 <h2>WebWorks</h2>
 <div>
 <a href="#services">Services</a>
-<a href="#process">Process</a>
+<a href="#portfolio">Work</a>
 <a href="#pricing">Pricing</a>
 <a href="#contact">Contact</a>
 </div>
@@ -179,84 +230,87 @@ opacity: 0.7;
 
 <div class="hero">
 <div>
-<h1>We Build <span>With You</span> — Not For You.</h1>
-<p>Professional websites designed around your vision, strategically built to increase trust, attract customers, and grow your business at affordable prices.</p>
+<h1>We Build <span>With You</span>.</h1>
+<p>Not templates. Not guesswork. We collaborate with you to design a high-converting website that reflects your vision and positions your business with authority.</p>
 <a href="#contact" class="button">Start Your Project</a>
 </div>
 </div>
 
 <section id="services">
-<h2>Services</h2>
-<p class="subtext">Every business is different. Your website should reflect that. We focus on clarity, performance, and modern design to ensure your business stands out online.</p>
+<h2>Designed To Convert.</h2>
+<p>Modern design is about psychology. Clarity builds trust. Speed builds confidence. Structure builds authority. Every website we build is engineered to help your business look established from day one.</p>
 <div class="grid">
 <div class="card">
-<h3>Website Design</h3>
-<p>Custom-built, responsive websites designed to reflect your brand and convert visitors into paying customers.</p>
+<h3>Custom Website Design</h3>
+<p>Premium layouts crafted around your brand, built to stand out and convert visitors into enquiries.</p>
 </div>
 <div class="card">
 <h3>Ongoing Maintenance</h3>
-<p>Continuous updates, improvements, and support so your website evolves as your business grows.</p>
+<p>Updates, refinements and performance optimisation so your site keeps working as your business grows.</p>
 </div>
 </div>
 </section>
 
-<section id="process">
-<h2>Our Process</h2>
-<p class="subtext">Clarity removes confusion. We follow a structured process that keeps you involved and ensures your final website reflects exactly what you envisioned.</p>
+<section id="portfolio">
+<h2>Recent Style Concepts</h2>
+<p>Clean. Confident. High-trust digital presence.</p>
 <div class="grid">
-<div class="process-step">
-<h3>1. Discovery</h3>
-<p>We understand your goals, audience, and brand direction.</p>
-</div>
-<div class="process-step">
-<h3>2. Design</h3>
-<p>We create a modern layout tailored to your vision.</p>
-</div>
-<div class="process-step">
-<h3>3. Build</h3>
-<p>Your website is developed with performance and responsiveness in mind.</p>
-</div>
-<div class="process-step">
-<h3>4. Launch</h3>
-<p>We publish your site and ensure everything runs smoothly.</p>
-</div>
+<div class="card"><h3>Corporate Modern</h3><p>Minimal, structured, conversion-focused.</p></div>
+<div class="card"><h3>Tech Startup</h3><p>Bold typography with layered depth.</p></div>
+<div class="card"><h3>Local Business</h3><p>Professional credibility with warmth.</p></div>
 </div>
 </section>
 
 <section id="pricing">
-<h2>Pricing</h2>
+<h2>Investment</h2>
 <div class="grid">
 <div class="price-card">
 <h3>Basic</h3>
 <div class="price">£200</div>
-<p>Single-page professional website<br>Mobile responsive<br>Clean modern layout<br>Fast turnaround</p>
+<p>Professional one-page site<br>Mobile responsive<br>Fast delivery<br>Ideal for new businesses</p>
 </div>
 <div class="price-card">
 <h3>Premium</h3>
 <div class="price">£450–£650</div>
-<p>Multi-page website<br>Advanced structure<br>Priority support<br>Custom feature integration</p>
+<p>Multi-page structured site<br>Advanced design depth<br>Priority build slot<br>Custom features</p>
 </div>
 </div>
+
+<div class="stats">
+<div class="stat"><h3>48h</h3><p>Avg. Response Time</p></div>
+<div class="stat"><h3>100%</h3><p>Client Collaboration</p></div>
+<div class="stat"><h3>Modern</h3><p>Design Standard</p></div>
+</div>
+
+<p style="margin-top:60px; opacity:0.6;">Limited availability to ensure quality and collaboration.</p>
 </section>
 
 <section id="contact">
-<h2>Let’s Build Something That Works</h2>
-<p class="subtext">Have an idea in mind? Let’s turn it into a professional online presence that builds credibility and drives results.</p>
-
-<p>Phone: +44 7305077815</p>
-<p>Email: charlvandermerwe360@gmail.com</p>
-
+<h2>Let’s Build Something Serious.</h2>
+<p>Phone: +44 7305077815<br>Email: charlvandermerwe360@gmail.com</p>
 <form action="https://formspree.io/f/yourformid" method="POST">
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" rows="5" placeholder="Tell us about your project" required></textarea>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="5" placeholder="Tell us about your project" required></textarea>
 <button type="submit">Send Message</button>
 </form>
 </section>
 
 <footer>
-© 2026 WebWorks. Designed with precision.
+© 2026 WebWorks. Precision Built.
 </footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+sections.forEach(sec => {
+const top = sec.getBoundingClientRect().top;
+if(top < window.innerHeight - 100){
+sec.classList.add("visible");
+}
+});
+});
+</script>
 
 </body>
 </html>
